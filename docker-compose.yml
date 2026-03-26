@@ -1,0 +1,35 @@
+version: '3.9'
+
+# MeiliWoo Search – Meilisearch self-hosting stack
+# Usage:
+#   docker compose up -d
+#   wp meiliwoo connect --host=http://localhost:7700 --key=changeme_master_key
+
+services:
+  meilisearch:
+    image: getmeili/meilisearch:v1.9
+    container_name: meiliwoo_meilisearch
+    restart: unless-stopped
+    ports:
+      - "7700:7700"
+    environment:
+      MEILI_ENV: "production"
+      MEILI_MASTER_KEY: "${MEILISEARCH_MASTER_KEY:-changeme_master_key}"
+      MEILI_DB_PATH: "/meili_data"
+      MEILI_LOG_LEVEL: "WARN"
+    volumes:
+      - meilisearch_data:/meili_data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:7700/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+volumes:
+  meilisearch_data:
+    driver: local
+
+networks:
+  default:
+    name: meiliwoo_network

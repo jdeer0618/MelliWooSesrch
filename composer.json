@@ -1,0 +1,43 @@
+{
+    "name": "jdeer0618/meiliwoo-search",
+    "description": "High-performance Meilisearch-powered search for WordPress and WooCommerce.",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "php": ">=8.1",
+        "meilisearch/meilisearch-php": "^1.16",
+        "woocommerce/action-scheduler": "^3.8"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5",
+        "wp-coding-standards/wpcs": "^3.1",
+        "phpcompatibility/phpcompatibility-wp": "*",
+        "squizlabs/php_codesniffer": "^3.9",
+        "yoast/phpunit-polyfills": "^2.0",
+        "brain/monkey": "^2.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "MeiliWoo\\Search\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MeiliWoo\\Search\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test":      "phpunit",
+        "cs":        "phpcs --standard=WordPress src/",
+        "cs-fix":    "phpcbf --standard=WordPress src/"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        },
+        "sort-packages": true
+    },
+    "extra": {
+        "wordpress-install-dir": "wordpress"
+    }
+}

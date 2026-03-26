@@ -1,0 +1,319 @@
+/* MeiliWoo Search – Admin Styles */
+
+/* ── Layout ─────────────────────────────────────────────────────────────── */
+
+.meiliwoo-wrap {
+    max-width: 1200px;
+}
+
+.meiliwoo-wrap h1 {
+    margin-bottom: 8px;
+}
+
+.meiliwoo-tabs {
+    margin-bottom: 20px;
+}
+
+.meiliwoo-tab-content {
+    padding: 0;
+}
+
+.meiliwoo-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 900px) {
+    .meiliwoo-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ── Cards ──────────────────────────────────────────────────────────────── */
+
+.meiliwoo-card {
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+
+.meiliwoo-card h3 {
+    margin-top: 0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f0f0f1;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1d2327;
+}
+
+.meiliwoo-card .form-table th {
+    padding-left: 0;
+}
+
+/* ── Status card ─────────────────────────────────────────────────────────── */
+
+.meiliwoo-status-card {
+    position: relative;
+}
+
+.meiliwoo-status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    font-size: 16px;
+}
+
+.meiliwoo-status-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #d63638;
+    flex-shrink: 0;
+}
+
+.is-connected .meiliwoo-status-dot {
+    background: #00a32a;
+}
+
+.meiliwoo-info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+    font-size: 13px;
+}
+
+.meiliwoo-info-table td {
+    padding: 4px 8px 4px 0;
+    border-bottom: 1px solid #f0f0f1;
+    vertical-align: middle;
+}
+
+.meiliwoo-info-table td:first-child {
+    color: #646970;
+    width: 40%;
+}
+
+/* ── Stats grid ─────────────────────────────────────────────────────────── */
+
+.meiliwoo-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.meiliwoo-stat {
+    text-align: center;
+    padding: 16px;
+    background: #f6f7f7;
+    border-radius: 4px;
+}
+
+.meiliwoo-stat-number {
+    display: block;
+    font-size: 28px;
+    font-weight: 700;
+    color: #1d2327;
+    line-height: 1.2;
+}
+
+.meiliwoo-stat-number.is-active {
+    color: #2271b1;
+}
+
+.meiliwoo-stat-label {
+    display: block;
+    font-size: 12px;
+    color: #646970;
+    margin-top: 4px;
+}
+
+/* ── Progress bar ────────────────────────────────────────────────────────── */
+
+.meiliwoo-progress-wrap {
+    width: 100%;
+    height: 8px;
+    background: #f0f0f1;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 12px 0;
+}
+
+.meiliwoo-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: #2271b1;
+    border-radius: 4px;
+    transition: width 0.5s ease;
+    animation: meiliwoo-indeterminate 1.4s infinite ease-in-out;
+}
+
+@keyframes meiliwoo-indeterminate {
+    0%   { margin-left: 0; width: 30%; }
+    50%  { margin-left: 40%; width: 50%; }
+    100% { margin-left: 100%; width: 10%; }
+}
+
+/* ── Badges ──────────────────────────────────────────────────────────────── */
+
+.meiliwoo-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    background: #f0f0f1;
+    color: #3c434a;
+    vertical-align: middle;
+}
+
+.meiliwoo-badge-set {
+    background: #d7f0e1;
+    color: #1a4731;
+}
+
+.meiliwoo-badge-success {
+    background: #d7f0e1;
+    color: #1a4731;
+}
+
+.meiliwoo-badge-error {
+    background: #fde8e8;
+    color: #8a1f1f;
+}
+
+.meiliwoo-badge-woocommerce {
+    background: #7f54b3;
+    color: #fff;
+}
+
+.meiliwoo-badge-core {
+    background: #2271b1;
+    color: #fff;
+}
+
+/* ── Code blocks ─────────────────────────────────────────────────────────── */
+
+.meiliwoo-code {
+    background: #1e1e1e;
+    color: #ce9178;
+    padding: 12px 16px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    overflow-x: auto;
+    margin: 8px 0;
+    white-space: pre;
+}
+
+/* ── Log table ───────────────────────────────────────────────────────────── */
+
+.meiliwoo-log-error td:first-child {
+    border-left: 3px solid #d63638;
+}
+
+/* ── Test search ─────────────────────────────────────────────────────────── */
+
+.meiliwoo-test-search {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.meiliwoo-test-search input {
+    flex: 1;
+}
+
+.meiliwoo-test-results {
+    border-top: 1px solid #f0f0f1;
+    padding-top: 16px;
+}
+
+.meiliwoo-test-result-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f1;
+}
+
+.meiliwoo-test-result-item img {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #f0f0f1;
+    flex-shrink: 0;
+}
+
+.meiliwoo-test-result-item .result-title {
+    font-weight: 600;
+}
+
+.meiliwoo-test-result-item .result-meta {
+    font-size: 12px;
+    color: #646970;
+}
+
+.meiliwoo-test-result-item mark {
+    background: #fff3cd;
+    padding: 0 2px;
+    border-radius: 2px;
+}
+
+/* ── Sortable list ───────────────────────────────────────────────────────── */
+
+.meiliwoo-sortable {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.meiliwoo-sortable-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    background: #f6f7f7;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 4px;
+    cursor: move;
+}
+
+.meiliwoo-sortable-item:hover {
+    border-color: #2271b1;
+}
+
+.meiliwoo-drag-handle {
+    color: #c3c4c7;
+    cursor: grab;
+}
+
+.meiliwoo-drag-handle:active {
+    cursor: grabbing;
+}
+
+/* ── Spinner ─────────────────────────────────────────────────────────────── */
+
+.meiliwoo-spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #f0f0f1;
+    border-top-color: #2271b1;
+    border-radius: 50%;
+    animation: meiliwoo-spin 0.6s linear infinite;
+    vertical-align: middle;
+    margin-right: 6px;
+}
+
+@keyframes meiliwoo-spin {
+    to { transform: rotate(360deg); }
+}
