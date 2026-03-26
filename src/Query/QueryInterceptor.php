@@ -238,11 +238,13 @@ class QueryInterceptor {
         }
 
         // WC taxonomy filters (layered nav).
+        // WooCommerce emits ?filter_color=red (NOT filter_pa_color), so stripping
+        // 'filter_' yields 'color' — the canonical key DocumentBuilder writes to the index.
         foreach ( $_GET as $key => $value ) { // phpcs:ignore WordPress.Security.NonceVerification
             if ( strpos( $key, 'filter_' ) !== 0 ) {
                 continue;
             }
-            $attribute = wc_sanitize_taxonomy_name( substr( $key, 7 ) );
+            $attribute = sanitize_key( substr( $key, 7 ) ); // 'filter_color' → 'color'
             $terms     = array_map( 'sanitize_text_field', explode( ',', (string) $value ) );
             if ( ! empty( $terms ) ) {
                 $term_filters = array_map( static fn( $t ) => "attributes.{$attribute} = \"{$t}\"", $terms );

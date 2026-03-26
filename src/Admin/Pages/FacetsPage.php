@@ -102,7 +102,9 @@ class FacetsPage extends BasePage {
         if ( function_exists( 'wc_get_attribute_taxonomies' ) ) {
             foreach ( wc_get_attribute_taxonomies() as $taxonomy ) {
                 $label   = $taxonomy->attribute_label;
-                $key     = 'attributes.' . wc_attribute_taxonomy_name( $taxonomy->attribute_name );
+                // Use attribute_name (e.g. 'color') not wc_attribute_taxonomy_name ('pa_color')
+                // so the key matches what DocumentBuilder stores in the index.
+                $key     = 'attributes.' . sanitize_key( $taxonomy->attribute_name );
                 $attrs[] = [ 'key' => $key, 'label' => $label, 'source' => 'woocommerce' ];
             }
         }

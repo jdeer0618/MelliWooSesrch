@@ -192,14 +192,19 @@ class DocumentBuilder {
             if ( ! $attribute->get_variation() && ! $attribute->get_visible() ) {
                 continue;
             }
-            $name = wc_attribute_label( $slug, $product );
+            // Canonical key: strip pa_ prefix for global taxonomy attributes (pa_color → color).
+            // Local attributes keep their sanitised slug as-is.
+            $key = $attribute->is_taxonomy()
+                ? preg_replace( '/^pa_/', '', (string) $slug )
+                : sanitize_key( $slug );
+
             if ( $attribute->is_taxonomy() ) {
                 $terms = $attribute->get_terms();
                 if ( is_array( $terms ) ) {
-                    $result[ $name ] = array_map( static fn( $t ) => $t->name, $terms );
+                    $result[ $key ] = array_map( static fn( $t ) => $t->name, $terms );
                 }
             } else {
-                $result[ $name ] = $attribute->get_options();
+                $result[ $key ] = $attribute->get_options();
             }
         }
         return (object) $result;
@@ -207,9 +212,11 @@ class DocumentBuilder {
 
     private function get_variation_attributes( WC_Product_Variation $variation ): object {
         $result = [];
-        foreach ( $variation->get_variation_attributes() as $key => $value ) {
-            $label          = wc_attribute_label( str_replace( 'attribute_', '', $key ), $variation );
-            $result[ $label ] = [ $value ];
+        foreach ( $variation->get_variation_attributes() as $raw_key => $value ) {
+            // $raw_key is e.g. 'attribute_pa_color' or 'attribute_custom-size'.
+            $slug  = str_replace( 'attribute_', '', $raw_key );
+            $key   = preg_replace( '/^pa_/', '', $slug ); // pa_color → color
+            $result[ $key ] = [ $value ];
         }
         return (object) $result;
     }
